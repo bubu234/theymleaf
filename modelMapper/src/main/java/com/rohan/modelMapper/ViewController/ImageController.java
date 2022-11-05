@@ -27,9 +27,9 @@ public class ImageController {
 
 
     public ImageController(ImageService imageService, EmployeeRepository employeeRepository,
-                     DepartmentRepository departmentRepository,
-                     ProjectRepository projectRepository,
-                     ImageRepository imageRepository) {
+                           DepartmentRepository departmentRepository,
+                           ProjectRepository projectRepository,
+                           ImageRepository imageRepository) {
         this.imageService = imageService;
         this.employeeRepository = employeeRepository;
         this.departmentRepository = departmentRepository;
@@ -45,14 +45,4 @@ public class ImageController {
         return "/new";
     }
 
-    @PostMapping("/employees/about/upload")
-    public String index(@ModelAttribute ImageDto image) {
-        Optional<Image> optionalImage = imageRepository.findByEmployeeId(image.getEmployee_id());
-        if (optionalImage.isPresent()) {
-            imageService.updateImage(image);
-        } else {
-            imageService.saveImage(image);
-        }
-        return "redirect:/about/" + image.getEmployee_id();
-    }
 }
