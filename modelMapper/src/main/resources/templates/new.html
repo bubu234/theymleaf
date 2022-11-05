@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>themeleaf</title>
+
+</head>
+<body th:object="${img}">
+<div th:object="${image}">
+
+    <img th:src="${'data:image/jpg;base64,'+image.profileImage}" alt="">
+
+</div>
+<form method="post" th:action="@{'/employees/about/upload'}" enctype="multipart/form-data">
+    <input  type="file" id="img" name="img" accept="image/" th:field="*{image}"  />
+    <input type="submit" value="submit"  />
+</form>
+</body>
+</html>

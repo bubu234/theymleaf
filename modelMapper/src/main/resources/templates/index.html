@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link th:href="@{/index.css}" href="/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1 class="emp">Employee Details</h1>
+
+    <table style="width:100%">
+        <tr>
+            <th>Id</th>
+            <th>Employee</th>
+            <th>Department</th>
+            <th>Project</th>
+            <th>delet</th>
+        </tr>
+        <tr th:each="employee: ${employees}">
+            <td th:text="${employee.id}" />
+            <td th:text="${employee.name}" />
+            <td th:text="${employee.department.deptName}" />
+            <td>
+                <span th:each="project: ${employee.projects}">
+                    <span th:text="${project.projectName}"></span>,&nbsp;
+                </span>
+            </td>
+            <td>
+
+                <a th:href="@{'/update/'+${employee.id}}">Update</a>
+
+                <a th:href="@{'/delete/'+${employee.id}}" >Delete</a>
+            </td>
+        </tr>
+
+    </table>
+    <a th:href="@{'/employees/about/1'}" >Image</a>
+
+</body>
+</html>
